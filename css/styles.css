@@ -4,18 +4,17 @@ font-family: 'Poppins', sans-serif;
 font-family: 'Raleway', sans-serif; */
 
 :root{
-	--back-color: #1d1d1d;
+	--back-color: #070707;
 	--font-title-color: #c51717;
 	--details-color: #f1b40d;
 	--white-color: #f5eeee;
-	--right-margin: 1rem;
 }
 
 *{
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
-	color: #f5eeee;
+	color: var(--white-color);
 	text-decoration: none;
 	font-family: 'Poppins';
 	list-style: none;
@@ -26,47 +25,43 @@ html{
 }
 
 body{
-	display: grid;
-	grid-template-rows: auto auto auto;
-	background-color: #1d1d1d;
+	background-color: var(--back-color);
 }
-
 
 /* Inicio de estilos del header */
 .header_data{
-	align-items: center;
-	justify-content: space-between; 
 	display: grid;
-	grid-template-columns: 250px 250px 500px ;
+	grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+	place-items: center;
 	gap: 1rem;
+}
+
+h1::first-letter{
+	color: var(--font-title-color);
 }
 
 input[type="search"]{
 	height: 25px;
 	max-width: 250px;
+	min-width: 100px;
 	border-radius: 1rem;
 	border: 1px solid var(--font-title-color);
 	padding: .5rem;
-}
-
-h1::first-letter{
-	color: #c51717;
-}
-
-input{
-	color: #1d1d1d;
+	color: var(--back-color);
 }
 
 ul{
 	display: flex;
+	flex-direction: column;
 }
 
 li{
-	margin: 0 .5rem;
+	min-width: fit-content;
 }
 
 a{
-	color: var(--white-color);}
+	color: var(--white-color);
+}
 
 a:hover{
 	color: var(--font-title-color);
@@ -75,28 +70,7 @@ a:hover{
 }
 
 .banner{
-	position: relative;
-}
-
-img{
-	width: 100%;
-}
-
-.data{
-	position: absolute;
-	left: 0;
-	bottom: .4rem;
-	padding: 1rem;
-	background-color: #0000009a;
-	width: 100%;
-	font-size: 1.2rem;
-	backdrop-filter: blur(1.25rem);
-	box-shadow: 0 0 5px #0000009a;
-
-}
-
-.data > h2{
-	color: var(--details-color);
+	display: none;
 }
 /* final de estilos del header */
 
@@ -109,9 +83,9 @@ section{
 
 /* Estilos para la seccion sobre nosotros */
 
-.team_container{
+.team_container, .news_container{
 	display: grid;
-	grid-template-columns: repeat(3, minmax(min-content, auto));
+	grid-template-columns: repeat(auto-fill, minmax(200px, 250px));
 	gap: 1rem;
 	margin-top: 1rem;
 	justify-content: space-evenly;
@@ -119,13 +93,13 @@ section{
 
 .card{
 	display: inline-flex;
+	max-width: 425px;
 	border: 2px solid white;
 	align-items: center;
 	border-radius: 4px;
 	padding: .5rem;
 	gap: 1rem;
 	box-shadow: inset 0 0 10px var(--white-color), 0 0 10px var(--white-color);
-	backdrop-filter: blur(1.5rem);
 }
 
 .card_head_img{
@@ -136,13 +110,6 @@ section{
 /* Fin estilos sobre nosotros */
 
 /* Estilos de section Novedades */
-.news_container{
-	display: grid;
-	grid-template-columns: repeat(5, minmax(200px,auto));
-	gap: .2rem;
-	margin-top: 1rem;
-	justify-content: space-evenly;
-}
 
 .news_card{
 	border: 2px solid var(--white-color);
@@ -150,8 +117,22 @@ section{
 	box-shadow: inset 0 0 10px var(--white-color), 0 0 5px var(--white-color);
 }
 
+.novedad{
+	position: absolute;
+	right: -5px;
+	top: 75%;
+	background-color: var(--font-title-color);
+	box-shadow: 0 0 5px var(--back-color);
+	padding: .5rem;
+	border-radius: 4px;
+}
+
 .news_card_head{
 	position: relative;
+}
+
+.news_card_head > img{
+	width: 100%;
 }
 
 .novedad_info{
@@ -183,13 +164,72 @@ h2{
 	color: #ff2c2c;
 }
 
-h5>a{
+h5 > a{
 	color: #ff2c2c;
 }
 
-@media(max-width: 1024px){
-	.team_container, .news_container{
-		grid-template-columns: repeat(auto-fill, minmax(200px,auto));
+@media (min-width: 768px) {
+
+	ul{
+		flex-direction: row;
+		width: 437px;
 		gap: 1rem;
+	}
+
+	.team_container{
+		grid-template-columns: repeat(3, 250px);
+		place-items: center;
+	}
+
+	.card{
+		gap: 0;
+	}
+}
+
+@media (min-width: 1024px) {
+
+	.header_data{
+		grid-template-columns: repeat(3, 1fr);
+		padding: 0 1rem;
+	} 
+
+	ul{
+		gap: 0.5rem;
+	}
+
+	.banner{
+		display: block;
+		position: relative;
+	}
+
+	img{
+		width: 100%;
+	}
+
+	.data{
+		position: absolute;
+		left: 0;
+		bottom: .4rem;
+		padding: 1rem;
+		background-color: #0000009a;
+		width: 100%;
+		font-size: 1.2rem;
+		backdrop-filter: blur(1.25rem);
+		box-shadow: 0 0 5px #0000009a;
+	}
+
+	.data > h2{
+		color: var(--details-color);
+	}
+
+	.team_container{
+		grid-template-columns: repeat(3, 300px);
+		place-items: center;
+	}
+}
+
+@media (min-width: 1440px) {
+	.news_container{
+		grid-template-columns: repeat(5, minmax(200px, 250px));
 	}
 }
