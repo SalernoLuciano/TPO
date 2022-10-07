@@ -3,14 +3,14 @@ font-family: 'Hind Siliguri', sans-serif;
 font-family: 'Poppins', sans-serif;
 font-family: 'Raleway', sans-serif; */
 
-:root{
+:root {
 	--back-color: #070707;
 	--font-title-color: #c51717;
 	--details-color: #f1b40d;
 	--white-color: #f5eeee;
 }
 
-*{
+* {
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
@@ -20,27 +20,27 @@ font-family: 'Raleway', sans-serif; */
 	list-style: none;
 }
 
-html{
+html {
 	scroll-behavior: smooth;
 }
 
-body{
+body {
 	background-color: var(--back-color);
 }
 
 /* Inicio de estilos del header */
-.header_data{
+.header_data {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
 	place-items: center;
 	gap: 1rem;
 }
 
-h1::first-letter{
+h1::first-letter {
 	color: var(--font-title-color);
 }
 
-input[type="search"]{
+input[type="search"] {
 	height: 25px;
 	max-width: 250px;
 	min-width: 100px;
@@ -50,40 +50,43 @@ input[type="search"]{
 	color: var(--back-color);
 }
 
-ul{
+ul {
 	display: flex;
 	flex-direction: column;
 }
 
-li{
+li {
 	min-width: fit-content;
 }
 
-a{
+a {
 	color: var(--white-color);
 }
 
-a:hover{
+a:hover {
 	color: var(--font-title-color);
 	text-shadow: 0 0 2px #ff2c2c;
 	transition: color .3s;
 }
 
-.banner{
+.banner {
 	display: none;
 }
+
 /* final de estilos del header */
 
 /* Estilos generales para cada section */
-section{
+section {
 	margin-top: 2rem;
 	padding: .5rem;
 }
+
 /* final de estilos del section*/
 
 /* Estilos para la seccion sobre nosotros */
 
-.team_container, .news_container{
+.team_container,
+.news_container {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(200px, 250px));
 	gap: 1rem;
@@ -91,7 +94,7 @@ section{
 	justify-content: space-evenly;
 }
 
-.card{
+.card {
 	display: inline-flex;
 	max-width: 425px;
 	border: 2px solid white;
@@ -102,7 +105,7 @@ section{
 	box-shadow: inset 0 0 10px var(--white-color), 0 0 10px var(--white-color);
 }
 
-.card_head_img{
+.card_head_img {
 	width: 100px;
 	border-radius: 100%;
 }
@@ -111,13 +114,13 @@ section{
 
 /* Estilos de section Novedades */
 
-.news_card{
+.news_card {
 	border: 2px solid var(--white-color);
 	border-radius: 4px;
 	box-shadow: inset 0 0 10px var(--white-color), 0 0 5px var(--white-color);
 }
 
-.novedad{
+.novedad {
 	position: absolute;
 	right: -5px;
 	top: 75%;
@@ -127,15 +130,15 @@ section{
 	border-radius: 4px;
 }
 
-.news_card_head{
+.news_card_head {
 	position: relative;
 }
 
-.news_card_head > img{
+.news_card_head>img {
 	width: 100%;
 }
 
-.novedad_info{
+.novedad_info {
 	position: absolute;
 	width: 32px;
 	height: 32px;
@@ -150,21 +153,21 @@ section{
 	backdrop-filter: blur(5px);
 }
 
-.news_card_body{
+.news_card_body {
 	padding: 0 .5rem .5rem;
 }
 
 /* Fin estilos novedades */
 
-path{
+path {
 	fill: var(--details-color);
 }
 
-h2{
+h2 {
 	color: #ff2c2c;
 }
 
-h5 > a{
+h5>a {
 	color: #ff2c2c;
 }
 
@@ -175,84 +178,89 @@ h5 > a{
 .footer-principal {
 	background-color: #101018;
 	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
-	
+
 	box-sizing: border-box;
 	width: 100%;
 	text-align: left;
 	font: normal 16px sans-serif;
 	padding: 45px 50px;
-  }
-  
-  .footer-principal .footer-left p {
+}
+
+.footer-principal .footer-left p {
 	color: #8f9296;
 	font-size: 20px;
 	margin: 0;
 
 	text-align: center;
 
-	line-height: 1.8;  
-  }
+	line-height: 1.8;
+}
 
 
-  /* Footer links */
-  
-  .footer-principal p.footer-links {
+/* Footer links */
+
+.footer-principal p.footer-links {
 	font-size: 23px;
 	font-weight: bold;
 	color: #ffffff;
 	margin: 0 0 10px;
 	padding: 0;
 	transition: ease .25s;
-  }
-  
-  .footer-principal p.footer-links a {
+}
+
+.footer-principal p.footer-links a {
 	display: inline-block;
 	line-height: 1.8;
 	text-decoration: none;
 	color: inherit;
 	transition: ease .25s;
-  }
-  
-  .footer-principal .footer-links a:before {
+}
+
+.footer-principal .footer-links a:before {
 	content: "·";
 	font-size: 20px;
 	left: 0;
 	color: #fff;
 	display: inline-block;
 	padding-right: 5px;
-  }
-  
-  .footer-principal .footer-links .link-1:before {
+}
+
+.footer-principal .footer-links .link-1:before {
 	content: none;
-  }
-  
-  .footer-principal .footer-right {
+}
+
+.footer-principal .footer-right {
 	float: none;
 	margin: 0 auto 20px;
 	max-width: 180px;
 	text-align: center;
 
-  }
-  
-  .footer-principal .footer-right a {
+}
+
+.footer-principal .footer-right a {
 	display: inline-block;
 	width: 35px;
 	height: 35px;
 	background-color: #33383b;
-	
+
 	border-radius: 2px;
 	font-size: 20px;
 	color: #ffffff;
 	text-align: center;
 	line-height: 35px;
 	margin-left: 3px;
-	transition:all .25s;
-	
-  }
-  
-  .footer-principal .footer-right a:hover{transform:scale(1.5); -webkit-transform:scale(1.5);}
-  
-  .footer-principal p.footer-links a:hover{text-decoration:underline;}
+	transition: all .25s;
+
+}
+
+.footer-principal .footer-right a:hover {
+	transform: scale(1.5);
+	-webkit-transform: scale(1.5);
+}
+
+.footer-principal p.footer-links a:hover {
+	text-decoration: underline;
+}
 
 
 
@@ -260,50 +268,46 @@ h5 > a{
 
 @media (min-width: 768px) {
 
-	ul{
+	ul {
 		flex-direction: row;
 		width: 437px;
 		gap: 1rem;
 	}
 
-	.team_container{
+	.team_container {
 		grid-template-columns: repeat(3, 250px);
 		place-items: center;
 	}
 
-	.card{
+	.card {
 		gap: 0;
 	}
 
-	
+
 
 }
 
-
-
-
-
 @media (min-width: 1024px) {
 
-	.header_data{
+	.header_data {
 		grid-template-columns: repeat(3, 1fr);
 		padding: 0 1rem;
-	} 
+	}
 
-	ul{
+	ul {
 		gap: 0.5rem;
 	}
 
-	.banner{
+	.banner {
 		display: block;
 		position: relative;
 	}
 
-	img{
+	img {
 		width: 100%;
 	}
 
-	.data{
+	.data {
 		position: absolute;
 		left: 0;
 		bottom: .4rem;
@@ -315,11 +319,11 @@ h5 > a{
 		box-shadow: 0 0 5px #0000009a;
 	}
 
-	.data > h2{
+	.data>h2 {
 		color: var(--details-color);
 	}
 
-	.team_container{
+	.team_container {
 		grid-template-columns: repeat(3, 300px);
 		place-items: center;
 	}
@@ -327,28 +331,23 @@ h5 > a{
 	.footer-principal .footer-left {
 		float: left;
 		text-align: left;
-		
-	
-		} 
-		.footer-principal .footer-right {
-		  float: right;
-		  margin-top: top;
-		}
-		
-		 .footer-principal .footer-left p.footer-links {
-		  line-height:normal;
-		}
-	
 
+
+	}
+
+	.footer-principal .footer-right {
+		float: right;
+		margin-top: top;
+	}
+
+	.footer-principal .footer-left p.footer-links {
+		line-height: normal;
+	}
 
 }
 
-
 @media (min-width: 1440px) {
-	.news_container{
+	.news_container {
 		grid-template-columns: repeat(5, minmax(200px, 250px));
 	}
 }
-
-
-
