@@ -1,48 +1,67 @@
-const options = {
-	method: 'GET',
-	headers: {
-		'X-RapidAPI-Key': '17d25ea0bbmshead1c612606fe38p138505jsn6b83cb2ee369',
-		'X-RapidAPI-Host': 'online-movie-database.p.rapidapi.com'
-	}
-};
+const APIKEY = '9772a809e83c417c835dc74456b510a4'
 
-fetch('https://online-movie-database.p.rapidapi.com/auto-complete?q=game%20of%20thr', options)
-	.then(response => response.json())
-	.then(response => {
-		console.log(response.d)
-		response.d.map(movie => {
-			const imgSrc = movie.i? movie.i.imageUrl : 'https://media-exp1.licdn.com/dms/image/C560BAQHMnA03XDdf3w/company-logo_200_200/0/1519855918965?e=2147483647&v=beta&t=J3kUMZwIphc90TFKH5oOO9Sa9K59fimgJf-s_okU3zs'
-			const { l, s } = movie
+const SEARCHTYPE = {
+	movie: 'search/movie',
+	tv: 'search/tv',
+}
 
-			const container = document.querySelector('.news_container')
-			const card = document.createElement('div')
-			const cardHead = document.createElement('div')
-			const cardBody = document.createElement('div')
-			const img = document.createElement('img')
-			const titulo = document.createElement('h2')
-			const descripcion = document.createElement('p')
+function showList(movies){
+	const container = document.querySelector('.news_container')
 
-			container.classList.add('news_container')
-			card.classList.add('news_card')
-			cardHead.classList.add('news_card_head')
-			cardBody.classList.add('news_card_body')
-			img.classList.add('news_card_head_img')
-			img.src = imgSrc
-			titulo.classList.add('news_card_body_nombre')
-			descripcion.classList.add('news_card_body_descripcion')
-
-
-			cardHead.appendChild(img)
-			
-			titulo.innerHTML = l
-			descripcion.innerHTML = s
-			cardBody.appendChild(titulo)
-			cardBody.appendChild(descripcion)
-
-			card.appendChild(cardHead)
-			card.appendChild(cardBody)
-			container.appendChild(card)
-
-		})
+	movies.map(movie => {
+		const card = `
+		<div class="news_card">
+			<div class="news_card_head">
+				<img src="https://image.tmdb.org/t/p/w500/${movie.poster_path}" alt="foto cv" class="news_card_head_img">
+				<span class="novedad_info"><i class="fa-solid fa-film"></i></i></span>
+			</div>
+			<div class="news_card_body">
+				<h2 class="news_card_body_nombre">${movie.title || movie.name}</h2>
+				<p class="news_card_body_descripcion">
+				${movie.vote_average}
+				<span>
+					<i class="fa-solid fa-star"></i>
+					<i class="fa-solid fa-star"></i>
+					<i class="fa-solid fa-star"></i>
+					<i class="fa-solid fa-star"></i>
+					<i class="fa-solid fa-star"></i>
+				</span>
+				</p>
+			</div>
+		</div>`
+	
+		container.innerHTML += card
 	})
-	.catch(err => console.error(err));
+}
+
+async function searchMovieOrShow(type, query) {
+	if(query.length >= 3){
+		const APIUrl = `https://api.themoviedb.org/3/${type}?api_key=${APIKEY}&language=es-MX&query=${query}&page=1`
+		const result = await fetch(APIUrl)
+		const resultParsed = await result.json()
+		console.log(resultParsed)	
+		const movies = resultParsed.results
+		showList(movies)
+	}
+}
+
+async function getNews() {
+	try {
+		const APIUrl = `https://api.themoviedb.org/3/trending/all/week?api_key=9772a809e83c417c835dc74456b510a4`
+		const result = await fetch(APIUrl)
+		const resultParsed = await result.json()
+		console.log(resultParsed)	
+		const movies = resultParsed.results
+		showList(movies)
+	} catch (error) {
+		console.error(error)
+	}
+}
+
+
+const buscador = document.querySelector('#buscador')
+buscador.addEventListener('search', function(){
+	searchMovieOrShow(SEARCHTYPE.tv, this.value)
+})
+
+getNews()
