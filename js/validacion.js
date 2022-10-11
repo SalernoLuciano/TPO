@@ -3,6 +3,8 @@ const APIKEY = '9772a809e83c417c835dc74456b510a4'
 const SEARCHTYPE = {
 	movie: 'search/movie',
 	tv: 'search/tv',
+	movieLatest: 'movie/top_rated',
+	tvLatest: 'tv/top_rated'
 }
 
 /**
@@ -58,7 +60,7 @@ function agregarListener(){
  * Lista las peliculas/series encontradas en la seccion indicada como 3° parametro
  * @param {Object} movies
  * @param {Boolean} novedad
- * @param {HTMLObjectElement} section
+ * @param {HTMLElement} section
  * @author Luciano Salerno
  * @version 0.2.2
  */
@@ -73,7 +75,7 @@ function showList(movies, novedad, section) {
 		const card = `
 		<div class="news_card" id="${movie.id}">
 			<div class="news_card_head">
-				<img src="https://image.tmdb.org/t/p/w500/${movie.poster_path}" alt="${movie.title || movie.name}" class="news_card_head_img">
+				<img src="${movie.poster_path? 'https://image.tmdb.org/t/p/w500/' + movie.poster_path: './img/generic.png' }" alt="${movie.title || movie.name}" class="news_card_head_img">
 				<span class="novedad_info"><i class="fa-solid ${movie.title? 'fa-film': 'fa-tv'}"></i></i></span>
 				${novedad ? '<span class="novedad">NOVEDAD</span>':''}
 			</div>
@@ -97,7 +99,7 @@ function showList(movies, novedad, section) {
  * Busca de manera asincrona la pelicula o serie segun su nombre
  * @param {String} type 
  * @param {String} query
- * @param {HTMLObjectElement} section
+ * @param {HTMLElement} section
  * @author Luciano Salerno
  * @version 0.2.1
  */
@@ -122,13 +124,32 @@ async function searchMovieOrShow(type, query, section) {
  */
 async function getNews() {
 	try {
-		const APIUrl = `https://api.themoviedb.org/3/trending/all/week?api_key=9772a809e83c417c835dc74456b510a4`
+		const APIUrl = `https://api.themoviedb.org/3/trending/all/week?api_key=${APIKEY}&language=es-MX`
 		const result = await fetch(APIUrl)
 		const resultParsed = await result.json()
 		const movies = resultParsed.results
 		showList(movies, true, document.getElementById('novedades'))
 	} catch (error) {
 		console.error(`Problemas al traer las novedades: ${error}`)
+	}
+}
+
+/**
+ * Muestra las peliculas o series mejor votadas
+ * @param {String} type 
+ * @param {HTMLElement} section 
+ * @author Luciano Salerno
+ * @version 0.0.1
+ */
+async function getLatest(type, section){
+	try {
+		const APIUrl = `https://api.themoviedb.org/3/${type}?api_key=${APIKEY}&language=es-MX`
+		const result = await fetch(APIUrl)
+		const resultParsed = await result.json()
+		const movies = resultParsed.results
+		showList(movies, false, section)
+	} catch (error) {
+		console.error(`Problemas al traer las ultimas peliculas: ${error.trace}`)
 	}
 }
 
@@ -148,3 +169,9 @@ buscador.addEventListener('search', search)
 
 //Muestro en la seccion de novedades las 5 primeras novedades
 getNews()
+
+// Muestro en la seccion de las 5 peliculas mejores votadas
+getLatest(SEARCHTYPE.movieLatest, document.getElementById('peliculas'))
+
+// Muestro en la seccion de las 5 series mejores votadas
+getLatest(SEARCHTYPE.tvLatest, document.getElementById('series'))
