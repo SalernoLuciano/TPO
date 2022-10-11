@@ -32,15 +32,17 @@ async function getVideo(id) {
 }
 
 /**
- * Lista las peliculas/series encontradas
+ * Lista las peliculas/series encontradas en la seccion indicada como 3° parametro
  * @param {Object} movies
  * @param {String} section
  * @param {Boolean} novedad
+ * @param {HTMLObjectElement} section
  * @author Luciano Salerno
  * @version 0.2.1
  */
-function showList(movies, novedad) {
-	const container = document.querySelector('.news_container')
+function showList(movies, novedad, section) {
+	const container = section.querySelector('.news_container')
+	container.innerHTML = ''
 
 	movies.map((movie) => {
 		let stars = ''
@@ -48,7 +50,7 @@ function showList(movies, novedad) {
 		const card = `
 		<div class="news_card">
 			<div class="news_card_head">
-				<img src="https://image.tmdb.org/t/p/w500/${movie.poster_path}" alt="foto cv" class="news_card_head_img">
+				<img src="https://image.tmdb.org/t/p/w500/${movie.poster_path}" alt="${movie.title || movie.name}" class="news_card_head_img">
 				<span class="novedad_info"><i class="fa-solid ${movie.title? 'fa-film': 'fa-tv'}"></i></i></span>
 				${novedad ? '<span class="novedad">NOVEDAD</span>':''}
 			</div>
@@ -71,17 +73,18 @@ function showList(movies, novedad) {
  * Busca de manera asincrona la pelicula o serie segun su nombre
  * @param {String} type 
  * @param {String} query
+ * @param {HTMLObjectElement} section
  * @author Luciano Salerno
- * @version 0.1.0
+ * @version 0.2.0
  */
-async function searchMovieOrShow(type, query) {
+async function searchMovieOrShow(type, query, section) {
 	try {
 		if (query.length >= 3) {
 			const APIUrl = `https://api.themoviedb.org/3/${type}?api_key=${APIKEY}&language=es-MX&query=${query}&page=1`
 			const result = await fetch(APIUrl)
 			const resultParsed = await result.json()
 			const movies = resultParsed.results
-			showList(movies, false)
+			showList(movies, false, section)
 		}
 	} catch (error) {
 		console.error(`Hubo un problema al buscar la pelicula o serie: ${error}`)
@@ -99,7 +102,7 @@ async function getNews() {
 		const result = await fetch(APIUrl)
 		const resultParsed = await result.json()
 		const movies = resultParsed.results
-		showList(movies, true)
+		showList(movies, true, document.getElementById('novedades'))
 	} catch (error) {
 		console.error(`Problemas al traer las novedades: ${error}`)
 	}
@@ -112,7 +115,7 @@ async function getNews() {
  */
 function search(){
 	const opt = document.getElementsByName('option')
-	opt[0].checked ? searchMovieOrShow(SEARCHTYPE.movie, this.value) : searchMovieOrShow(SEARCHTYPE.tv, this.value)
+	opt[0].checked ? searchMovieOrShow(SEARCHTYPE.movie, this.value, document.getElementById('peliculas')) : searchMovieOrShow(SEARCHTYPE.tv, this.value, document.getElementById('series'))
 }
 
 // Busco pelicula/serie ingresada en la barra de busqueda
