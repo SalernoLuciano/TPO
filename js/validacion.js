@@ -31,13 +31,26 @@ async function getVideo(id) {
 	}
 }
 
+/**
+ * Crea y agrega un modal a una 'news_card' ( sería this la card )
+ * @author Luciano Salerno
+ * @version 0.0.1
+ */
+function agregarModal(){
+	const id = this.id // con este id voy a buscar el trailer
+	console.log(id)
+	/* Agregar aca el modal cuando se clikee el news_card */
+}
+
+/**
+ * Agrega un Listener a cada 'news_card'
+ * @author Luciano Salerno
+ * @version 0.0.1
+ */
 function agregarListener(){
 	const cards = document.querySelectorAll('.news_card')
-	cards.forEach((card)=> {
-		card.addEventListener('click', function(){
-			console.log(this)
-			/* Agregar aca el modal cuando se clikee el news_card */
-		})
+	cards.forEach((card) => {
+		card.addEventListener('click', agregarModal)
 	})
 }
 
@@ -47,18 +60,18 @@ function agregarListener(){
  * @param {Boolean} novedad
  * @param {HTMLObjectElement} section
  * @author Luciano Salerno
- * @version 0.2.1
+ * @version 0.2.2
  */
 function showList(movies, novedad, section) {
 	const container = section.querySelector('.news_container')
 	container.innerHTML = ''
 
-	movies.length = 5
+	movies.length = movies.length > 5 ? 5 : movies.length
 	movies.map((movie) => {
 		let stars = ''
 		for(let i=0; i< Math.floor(movie.vote_average/2); i++) stars +='<i class="fa-solid fa-star"></i>'
 		const card = `
-		<div class="news_card">
+		<div class="news_card" id="${movie.id}">
 			<div class="news_card_head">
 				<img src="https://image.tmdb.org/t/p/w500/${movie.poster_path}" alt="${movie.title || movie.name}" class="news_card_head_img">
 				<span class="novedad_info"><i class="fa-solid ${movie.title? 'fa-film': 'fa-tv'}"></i></i></span>
@@ -86,7 +99,7 @@ function showList(movies, novedad, section) {
  * @param {String} query
  * @param {HTMLObjectElement} section
  * @author Luciano Salerno
- * @version 0.2.0
+ * @version 0.2.1
  */
 async function searchMovieOrShow(type, query, section) {
 	try {
@@ -98,7 +111,7 @@ async function searchMovieOrShow(type, query, section) {
 			showList(movies, false, section)
 		}
 	} catch (error) {
-		console.error(`Hubo un problema al buscar la pelicula o serie: ${error}`)
+		console.error(`Hubo un problema al buscar la pelicula o serie: ${error.trace}`)
 	}
 }
 
@@ -126,7 +139,7 @@ async function getNews() {
  */
 function search(){
 	const opt = document.getElementsByName('option')
-	opt[0].checked ? searchMovieOrShow(SEARCHTYPE.movie, this.value, document.getElementById('peliculas')) : searchMovieOrShow(SEARCHTYPE.tv, this.value, document.getElementById('series'))
+	opt[0].checked ? searchMovieOrShow(SEARCHTYPE.movie, this.value, document.getElementById('resultado')) : searchMovieOrShow(SEARCHTYPE.tv, this.value, document.getElementById('resultado'))
 }
 
 // Busco pelicula/serie ingresada en la barra de busqueda
