@@ -86,7 +86,7 @@ section{
 .team_container, .news_container{
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(200px, 250px));
-	gap: 1rem;
+	gap: 1.5rem;
 	margin-top: 1rem;
 	justify-content: space-evenly;
 }
@@ -115,10 +115,13 @@ section{
 	border: 2px solid var(--white-color);
 	border-radius: 4px;
 	box-shadow: 0 0 5px var(--white-color);
+	transition: transform ease .5s;
 }
 
 .news_card:hover{
 	cursor: pointer;
+	opacity: .8;
+	transform: scale(1.08);
 }
 
 .novedad{
