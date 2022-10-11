@@ -31,10 +31,19 @@ async function getVideo(id) {
 	}
 }
 
+function agregarListener(){
+	const cards = document.querySelectorAll('.news_card')
+	cards.forEach((card)=> {
+		card.addEventListener('click', function(){
+			console.log(this)
+			/* Agregar aca el modal cuando se clikee el news_card */
+		})
+	})
+}
+
 /**
  * Lista las peliculas/series encontradas en la seccion indicada como 3° parametro
  * @param {Object} movies
- * @param {String} section
  * @param {Boolean} novedad
  * @param {HTMLObjectElement} section
  * @author Luciano Salerno
@@ -44,6 +53,7 @@ function showList(movies, novedad, section) {
 	const container = section.querySelector('.news_container')
 	container.innerHTML = ''
 
+	movies.length = 5
 	movies.map((movie) => {
 		let stars = ''
 		for(let i=0; i< Math.floor(movie.vote_average/2); i++) stars +='<i class="fa-solid fa-star"></i>'
@@ -67,6 +77,7 @@ function showList(movies, novedad, section) {
 
 		container.innerHTML += card
 	})
+	agregarListener()
 }
 
 /**

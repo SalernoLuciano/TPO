@@ -117,6 +117,10 @@ section{
 	box-shadow: 0 0 5px var(--white-color);
 }
 
+.news_card:hover{
+	cursor: pointer;
+}
+
 .novedad{
 	position: absolute;
 	right: -5px;
