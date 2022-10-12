@@ -11,8 +11,14 @@ function cerrarModal(){
 	const modal = document.getElementById('modal')
 	this.classList.toggle('hiden')
 	modal.classList.toggle('hiden')
+	modal.innerHTML = ''
 }
 
+async function getMovieOrSerieDetails(id, type){
+	const detalles = await fetch(`https://api.themoviedb.org/3/${type}/${id}?api_key=${APIKEY}`)
+	const detallesParced = await detalles.json()
+	return detallesParced
+}
 
 /**
  * 
@@ -24,6 +30,7 @@ async function getVideo(id, type) {
 	try {
 		const videos = await fetch(`https://api.themoviedb.org/3/${type}/${id}/videos?api_key=${APIKEY}`)
 		const videosParsed = await videos.json()
+		console.log(videosParsed)
 		const filtrados = videosParsed.results.filter(video => video.type === 'Trailer')
 		const {key , site} = filtrados[0]
 		const videoUrl = `https://${site.toLowerCase()}.com/embed/${key}`
@@ -32,6 +39,7 @@ async function getVideo(id, type) {
 	}
 	catch (error) {
 		console.error(`Error: ${error.trace}: La pelicula no tiene trailer`)
+		return ''
 	}
 }
 
@@ -45,10 +53,13 @@ async function agregarModal(){
 	const cierre = document.getElementById('cierre')
 	modal.classList.toggle('hiden')
 	cierre.classList.toggle('hiden')
-	console.log(this.getElementsByClassName('fa-film')[0])
+	modal.innerHTML = ''
 	const trailer = await getVideo(this.id, this.getElementsByClassName('fa-film')[0] ? 'movie' : 'tv')
 	modal.innerHTML = trailer
-	
+	const detalles = await getMovieOrSerieDetails(this.id, this.getElementsByClassName('fa-film')[0] ? 'movie' : 'tv')
+
+	console.log(detalles)
+	/* Sacare la info que necesite de la pelicula / serie y armar un template para poner esa info en el modal mas los estilos css */
 }
 
 /**
@@ -56,7 +67,7 @@ async function agregarModal(){
  * @author Luciano Salerno
  * @version 0.0.1
  */
-function agregarListener(){
+function agregarListener(movies){
 	const cards = document.querySelectorAll('.news_card')
 	cards.forEach((card) => {
 		card.addEventListener('click', agregarModal)
@@ -102,7 +113,7 @@ function showList(movies, novedad, section) {
 		`)
 	})
 	container.innerHTML = cards.join('')
-	agregarListener()
+	agregarListener(movies)
 }
 
 /**
@@ -157,7 +168,6 @@ async function getLatest(type, section){
 		const result = await fetch(APIUrl)
 		const resultParsed = await result.json()
 		const movies = resultParsed.results
-		// console.log(section)
 		showList(movies, false, section)
 	} catch (error) {
 		console.error(`Problemas al traer las ultimas peliculas: ${error.trace}`)

@@ -251,8 +251,11 @@ h5 > a{
 	left: 0;
 	width: 100vw;
 	height: 100vh;
-	background-color: #000000bd;
+	background-color: #000000ee;
 	z-index: 1000;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .cierre{
@@ -262,6 +265,12 @@ h5 > a{
 	z-index: 1000;
 	cursor: pointer;
 	font-size: 32px;
+	color: #f1b40d;
+	background-color: #c517174d;
+	width: 40px;
+	height: 40px;
+	border-radius: 100%;
+	text-align: center;
 }
 
 .hiden{
