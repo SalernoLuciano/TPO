@@ -244,3 +244,26 @@ h5 > a{
 		grid-template-columns: repeat(5, minmax(200px, 250px));
 	}
 }
+
+.modal{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: #000000bd;
+	z-index: 1000;
+}
+
+.cierre{
+	position: fixed;
+	top: 0;
+	right: 1%;
+	z-index: 1000;
+	cursor: pointer;
+	font-size: 32px;
+}
+
+.hiden{
+	display: none;
+}

@@ -7,29 +7,31 @@ const SEARCHTYPE = {
 	tvLatest: 'tv/top_rated'
 }
 
+function cerrarModal(){
+	const modal = document.getElementById('modal')
+	this.classList.toggle('hiden')
+	modal.classList.toggle('hiden')
+}
+
+
 /**
  * 
  * @param {Number} id 
  * @author Luciano Salerno
  * @version 0.0.1
  */
-async function getVideo(id) {
+async function getVideo(id, type) {
 	try {
-		const videos = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${APIKEY}`)
+		const videos = await fetch(`https://api.themoviedb.org/3/${type}/${id}/videos?api_key=${APIKEY}`)
 		const videosParsed = await videos.json()
 		const filtrados = videosParsed.results.filter(video => video.type === 'Trailer')
+		const {key , site} = filtrados[0]
+		const videoUrl = `https://${site.toLowerCase()}.com/embed/${key}`
 
-		filtrados.forEach(video => {
-			const key = video.key
-			const sitio = video.site.toLowerCase()
-			const videoUrl = `https://${sitio}.com/embed/${key}`
-			const iframe = `<iframe width="560" height="315" src=${videoUrl} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
-			const body = document.getElementsByTagName('body')[0]
-			body.innerHTML += iframe
-		})
+		return (`<iframe width="560" height="315" src=${videoUrl} id=${id} class=${id} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`)
 	}
 	catch (error) {
-		console.error(`Error: ${error}: La pelicula no tiene trailer`)
+		console.error(`Error: ${error.trace}: La pelicula no tiene trailer`)
 	}
 }
 
@@ -38,10 +40,15 @@ async function getVideo(id) {
  * @author Luciano Salerno
  * @version 0.0.1
  */
-function agregarModal(){
-	const id = this.id // con este id voy a buscar el trailer
-	console.log(id)
-	/* Agregar aca el modal cuando se clikee el news_card */
+async function agregarModal(){
+	const modal = document.getElementById('modal')
+	const cierre = document.getElementById('cierre')
+	modal.classList.toggle('hiden')
+	cierre.classList.toggle('hiden')
+	console.log(this.getElementsByClassName('fa-film')[0])
+	const trailer = await getVideo(this.id, this.getElementsByClassName('fa-film')[0] ? 'movie' : 'tv')
+	modal.innerHTML = trailer
+	
 }
 
 /**
@@ -69,10 +76,13 @@ function showList(movies, novedad, section) {
 	container.innerHTML = ''
 
 	movies.length = movies.length > 5 ? 5 : movies.length
-	movies.map((movie) => {
+	
+	// CARDS = es un Array con las 5 peliculas
+	const cards = movies.map((movie) => {
 		let stars = ''
 		for(let i=0; i< Math.floor(movie.vote_average/2); i++) stars +='<i class="fa-solid fa-star"></i>'
-		const card = `
+		const type = movie.title? 'movie':'tv'
+		return (`
 		<div class="news_card" id="${movie.id}">
 			<div class="news_card_head">
 				<img src="${movie.poster_path? 'https://image.tmdb.org/t/p/w500/' + movie.poster_path: './img/generic.png' }" alt="${movie.title || movie.name}" class="news_card_head_img">
@@ -88,10 +98,10 @@ function showList(movies, novedad, section) {
 				</span>
 				</p>
 			</div>
-		</div>`
-
-		container.innerHTML += card
+		</div>
+		`)
 	})
+	container.innerHTML = cards.join('')
 	agregarListener()
 }
 
@@ -147,6 +157,7 @@ async function getLatest(type, section){
 		const result = await fetch(APIUrl)
 		const resultParsed = await result.json()
 		const movies = resultParsed.results
+		// console.log(section)
 		showList(movies, false, section)
 	} catch (error) {
 		console.error(`Problemas al traer las ultimas peliculas: ${error.trace}`)
@@ -166,6 +177,9 @@ function search(){
 // Busco pelicula/serie ingresada en la barra de busqueda
 const buscador = document.querySelector('#buscador')
 buscador.addEventListener('search', search)
+
+const modalClose = document.getElementById('cierre')
+modalClose.addEventListener('click', cerrarModal)
 
 //Muestro en la seccion de novedades las 5 primeras novedades
 getNews()
