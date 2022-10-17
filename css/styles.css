@@ -351,3 +351,71 @@ h5>a {
 		grid-template-columns: repeat(5, minmax(200px, 250px));
 	}
 }
+
+/* Pagina de contacto */
+#titulo_form{
+	text-align: center;
+}
+
+/* #subtitulo_form{
+	color: white;
+} */
+
+
+input{
+	color: black;
+	font-size: 18px;
+}
+
+select{
+	color: black;
+	font-size: 18px;
+}
+
+option{
+	color: black	;
+}
+
+span{
+	color: red !important; 
+}
+
+input[type="submit"]{
+	border: white;
+	border-radius: 2px;
+	padding: 5px 12px;
+}
+
+form{
+	font-size: 22px;
+	font-family: 'Poppins';
+	align-content: center;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(15rem, max-content));
+	justify-content: space-evenly;
+}
+
+textarea{
+	font-size: 22px;
+}
+
+fieldset {
+    border: 0;
+}
+
+.form{
+	text-align: center;
+}
+
+#subtitulo_form{
+	text-align: center;
+	color: #ea2d2d;
+}
+
+.campo{
+	border: solid #c51717;
+	color: white;
+	background-color: #070707;
+	border-radius: 5px;
+	width: 90%;
+}
