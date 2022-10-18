@@ -8,24 +8,38 @@
     <title>Formulario de contacto</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+    href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100;400;700&family=Hind+Siliguri:wght@300&family=Poppins:wght@100;200;400;700;900&family=Raleway:wght@100;300;700&display=swap"
+    rel="stylesheet">
     <script src="https://kit.fontawesome.com/df6d64d6a2.js" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100;400;700&family=Hind+Siliguri:wght@300&family=Poppins:wght@100;200;400;700;900&family=Raleway:wght@100;300;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
     <header>
         <div class="header_data">
-            <a href="/">
+            <a href="index.html">
                 <h1>MovieReviews</h1>
             </a>
-            <input type="search" name="buscador" id="buscador" placeholder="Buscar Pelicula/Serie">
+            <div>
+                <br><input type="search" name="buscador" id="buscador" placeholder="Buscar Pelicula/Serie"><br>
+                <div class="opciones_container">
+                    <div>
+                        <input type="radio" name="option" id="movie" value="movie" checked>
+                        <label for="movie">Movie</label>    
+                    </div>
+                    <div>
+                        <input type="radio" name="option" id="serie" value="serie">
+                        <label for="serie">Serie</label>    
+                    </div>
+                </div>
+            </div>
             <nav>
                 <ul>
-                    <li><a href="index.html#nosotros">Sobre Nosotros</a></li>
-                    <li><a href="index.html#novedades">Novedades</a></li>
-                    <li><a href="index.html#series">Series</a></li>
-                    <li><a href="index.html#peliculas">Películas</a></li>
+                    <li><a href="#nosotros">Sobre Nosotros</a></li>
+                    <li><a href="#novedades">Novedades</a></li>
+                    <li><a href="#series">Series</a></li>
+                    <li><a href="#peliculas">Películas</a></li>
                     <li><a href="formulario.html">Contacto</a></li>
                 </ul>
             </nav>
@@ -33,26 +47,29 @@
     </header>
 
     <main>
+        
+        <section id="resultado">
+            <div class="news_container"></div>
+        </section>
+
         <section id="contacto">
 
-            <h2 id="subtitulo_form">¿Querés contactarte con nosotros? Tenemos la mejor disposición para proveerte toda la información que necesites y ayudarte con cualquier consulta que puedas tener.
+            <h2 id="subtitulo_form">¿Dudas? Tenemos toda la info que necesites ¡No dudes en consultar!</h2><br><br>
 
-            </h2><br><br>
-
-            <form action="js/validacion.js" method="post">
+            <form method="get" id="formulario">
                 <div>
 
                     <fieldset> 
                     <!-- <legend>Datos Personales</legend><br> -->
 
-                        <input type="text" name="nombre" id="nombre" placeholder="Nombre" class="campo" required maxlength="50"
-                            data-nombre="nombre" autocomplete="name"><span>*</span><br><br>
+                        <input type="text" name="nombre" id="nombre" placeholder="Nombre" class="campo" maxlength="50"
+                            data-nombre="nombre" autocomplete="name"><span> </span><span class="asterisco">*</span><br><br>
                         
-                        <input type="text" name="apellido" id="apellido" placeholder="Apellido" class="campo" required maxlength="100"
-                            data-apellido="apellido" autocomplete="family-name"><span>*</span><br><br>
+                        <input type="text" name="apellido" id="apellido" placeholder="Apellido" class="campo" maxlength="100"
+                            data-apellido="apellido" autocomplete="family-name"><span> </span><span class="asterisco">*</span><br><br>
     
-                        <input type="text" name="correo" id="correo" placeholder="Correo" class="campo" required maxlength="100"
-                            data-apellido="correo" autocomplete="email"><span>*</span><br><br>
+                        <input type="text" name="correo" id="correo" placeholder="Correo" class="campo" maxlength="100"
+                            data-apellido="correo" autocomplete="email"><span> </span><span  class="asterisco">*</span><br><br>
     
                         <input type="tel" name="telefono" id="telefono" class="campo" data-telefono="telefono"
                             pattern="(0-9){10}" placeholder="Telefono" autocomplete="tel"><br><br>
@@ -306,20 +323,28 @@
                             <option value="Zimbabwe">Zimbabwe</option>
                         </select><br><br> -->
     
-                        <textarea name="mensaje" id="mensaje" cols="25" rows="5" class="campo" placeholder="Mensaje" required></textarea><span>*</span><br><br>
+                        <textarea name="mensaje" id="mensaje" cols="25" rows="5" class="campo" placeholder="Mensaje">
+                        </textarea><span> </span><span  class="asterisco">*</span><br><br>
     
                     </fieldset>
 
-                    <input type="submit" value= "Enviar">
+                    <div id="enviado">
+                        <input type="submit" value= "Enviar" id="submit">
+                        <p id="on_submit"></p>
+                    </div>
 
                 </div>
 
                 <iframe class="iframe" id="mapa" src="https://maps.google.com/?ll=-34.6037389,-58.3815704&z=16&output=embed" 
-                width="400" height="350" frameborder="0" style="border:0" allowfullscreen></iframe>
+                width="400" height="350" frameborder="0" style="border: solid red; border-radius: 10px;" allowfullscreen></iframe>
 
             </form>
 
         </section>
+        <div id='modal' class='modal hiden'>
+            <!-- Hcaer plantilla de modal para ingresar datos de las peliculas -->
+        </div>
+        <span id='cierre' class='cierre hiden'>&times</span>
     </main>
 
     <footer class="footer-principal">
@@ -353,6 +378,8 @@
 
     </footer>
 
+    <script src="./js/validacion.js"></script>
+    <script src="./js/script.js"></script>
 
 </body>
 </html>

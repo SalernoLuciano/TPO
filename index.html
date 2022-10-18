@@ -8,24 +8,31 @@
     <title>TPO - Movie/TV Show review</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100;400;700&family=Hind+Siliguri:wght@300&family=Poppins:wght@100;200;400;700;900&family=Raleway:wght@100;300;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100;400;700&family=Hind+Siliguri:wght@300&family=Poppins:wght@100;200;400;700;900&family=Raleway:wght@100;300;700&display=swap"
+        rel="stylesheet">
     <script src="https://kit.fontawesome.com/df6d64d6a2.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="./css/styles.css">
 </head>
 
 <body>
     <header>
         <div class="header_data">
-            <a href="/">
+            <a href="index.html">
                 <h1>MovieReviews</h1>
             </a>
             <div>
-                <input type="search" name="buscador" id="buscador" placeholder="Buscar Pelicula/Serie">
-                <input type="radio" name="option" id="movie" value="movie" checked>
-                <label for="movie">Movie</label>
-                <input type="radio" name="option" id="serie" value="serie">
-                <label for="serie">Serie</label>
-
+                <input type="search" name="buscador" id="buscador" placeholder="Buscar Pelicula/Serie"><br>
+                <div class="opciones_container">
+                    <div>
+                        <input type="radio" name="option" id="movie" value="movie" checked>
+                        <label for="movie">Movie</label>    
+                    </div>
+                    <div>
+                        <input type="radio" name="option" id="serie" value="serie">
+                        <label for="serie">Serie</label>    
+                    </div>
+                </div>
             </div>
             <nav>
                 <ul>
@@ -40,7 +47,9 @@
         <div class="banner">
             <div class="data">
                 <h2>Better Call Saul - Final Season</h2>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis repellendus itaque voluptatem perspiciatis tempora facere labore placeat perferendis, necessitatibus nam molestiae dignissimos dolore minus optio velit esse quae dolorem aspernatur.</p>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis repellendus itaque voluptatem
+                    perspiciatis tempora facere labore placeat perferendis, necessitatibus nam molestiae dignissimos
+                    dolore minus optio velit esse quae dolorem aspernatur.</p>
             </div>
             <img src="img/better-call-saul.png" alt="banner">
         </div>
@@ -53,45 +62,35 @@
 
         <section id="nosotros">
             <h2><a href="#home">#</a>Sobre Nosotros</h2>
-            
+
             <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur repellendus id aut, optio, labore
-                voluptate quas sit exercitationem adipisci atque eos harum, distinctio vero sapiente illo? Consequatur
-                voluptatibus ducimus labore.
-                Repudiandae illum repellat eaque sint perferendis error similique debitis voluptatibus? Iusto nulla
-                delectus magnam facilis laborum et! Assumenda aperiam, similique veniam eius molestiae quod eaque optio
-                id, molestias quia dicta.
-                Quisquam ipsa deserunt qui pariatur voluptate molestiae ad sint vero non? Ea dignissimos natus minus
-                fugiat a iusto expedita quidem minima. Magni sequi nostrum, voluptatem esse placeat beatae numquam
-                necessitatibus!
-                Accusantium est iusto quam veniam laboriosam eveniet, voluptatem nostrum voluptas. Sapiente iusto cumque
-                temporibus. Possimus officia corrupti, suscipit voluptas doloremque culpa facilis, molestias praesentium
-                nobis, facere consectetur libero labore quasi.
-                Iste fuga perferendis, id perspiciatis quam, culpa eveniet nemo tenetur doloribus doloremque ut sint
-                eaque, repellendus voluptates voluptatum? Amet dolorem, necessitatibus sit quas officiis sunt voluptatem
-                ab ullam tempore laborum?
+                Somos una compañía de aficionados al cine que crearon una herramienta 
+                súmamtene útil para cualquier persona fanática del cine y la televisión como nosotros.
+                Desde MovieReviews creemos que la información sobre cine y series debe ser de fácil 
+                acceso para poder disfrutarlo de la mejor forma, es por eso que desarrollamos una 
+                plataforma que permite obtener toda la información sobre tu contenido favorito
             </p>
 
             <div class="team_container">
                 <div class="card">
-                    <div class="card_head"><img src="./img/foto cv.jfif" alt="foto cv" class="card_head_img"></div>
+                    <div class="card_head"><img src="./img/R2D22.png" alt="foto cv" class="card_head_img"></div>
                     <div class="card_body">
                         <h2 class="card_body_nombre">Luciano</h2>
-                        <p class="card_body_descripcion">MovieReviews</p>
+                        <p class="card_body_descripcion">CEO</p>
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card_head"><img src="./img/foto cv.jfif" alt="foto cv" class="card_head_img"></div>
+                    <div class="card_head"><img src="./img/R2B12.png" alt="foto cv" class="card_head_img"></div>
                     <div class="card_body">
                         <h2 class="card_body_nombre">Rodrigo</h2>
-                        <p class="card_body_descripcion">MovieReviews</p>
+                        <p class="card_body_descripcion">CTO</p>
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card_head"><img src="./img/foto cv.jfif" alt="foto cv" class="card_head_img"></div>
+                    <div class="card_head"><img src="./img/R2R92.png" alt="foto cv" class="card_head_img"></div>
                     <div class="card_body">
                         <h2 class="card_body_nombre">Nicolás</h2>
-                        <p class="card_body_descripcion">MovieReviews</p>
+                        <p class="card_body_descripcion">CFO</p>
                     </div>
                 </div>
             </div>
@@ -109,7 +108,6 @@
         <section id="series">
 
             <h2><a href="#home">#</a>Series</h2>
-
             <h3>
                 En este apartado en contraras todas las series en nuestro catalogo
             </h3>
@@ -121,7 +119,6 @@
         <section id="peliculas">
 
             <h2><a href="#home">#</a>Películas</h2>
-
             <h3>
                 En este apartado en contraras todas las películas en nuestro catálogo
             </h3>
@@ -167,7 +164,7 @@
 
     </footer>
 
-    <script src="./js/validacion.js"></script>
+    <script src="./js/script.js"></script>
 </body>
 
 </html>
