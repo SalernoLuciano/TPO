@@ -15,7 +15,7 @@ function cerrarModal(){
 }
 
 async function getMovieOrSerieDetails(id, type){
-	const detalles = await fetch(`https://api.themoviedb.org/3/${type}/${id}?api_key=${APIKEY}`)
+	const detalles = await fetch(`https://api.themoviedb.org/3/${type}/${id}?api_key=${APIKEY}&language=es-MX`)
 	const detallesParced = await detalles.json()
 	return detallesParced
 }
