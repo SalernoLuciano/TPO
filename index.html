@@ -19,7 +19,14 @@
             <a href="/">
                 <h1>MovieReviews</h1>
             </a>
-            <input type="search" name="buscador" id="buscador" placeholder="Buscar Pelicula/Serie">
+            <div>
+                <input type="search" name="buscador" id="buscador" placeholder="Buscar Pelicula/Serie">
+                <input type="radio" name="option" id="movie" value="movie" checked>
+                <label for="movie">Movie</label>
+                <input type="radio" name="option" id="serie" value="serie">
+                <label for="serie">Serie</label>
+
+            </div>
             <nav>
                 <ul>
                     <li><a href="#nosotros">Sobre Nosotros</a></li>
@@ -40,6 +47,10 @@
     </header>
 
     <main>
+        <section id="resultado">
+            <div class="news_container"></div>
+        </section>
+
         <section id="nosotros">
             <h2><a href="#home">#</a>Sobre Nosotros</h2>
             
@@ -89,347 +100,40 @@
         <section id="novedades">
 
             <h2><a href="#home">#</a>Novedades</h2>
-            <span><h5>Para ver todas las novedades <a href="/novedades">Ingrese aquí</a>.</h5></span>
 
             <h3>En este apartado en contraras todas las novedades realcionadas a series y peliculas</h3>
 
-            <div class="news_container">
-                <div class="news_card">
-                    <div class="news_card_head">
-                        <img src="./img/foto cv.jfif" alt="foto cv" class="news_card_head_img">
-                        <span class="novedad_info"><i class="fa-solid fa-tv"></i></span>
-                        <span class="novedad">NOVEDAD</span>
-                    </div>
-                    <div class="news_card_body">
-                        <h2 class="news_card_body_nombre">Serie</h2>
-                        <p class="news_card_body_descripcion">
-                            Rating
-                            <span>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                            </span>
-                        </p>
-                    </div>
-                </div>
-
-                <div class="news_card">
-                    <div class="news_card_head">
-                        <img src="./img/foto cv.jfif" alt="foto cv" class="news_card_head_img">
-                        <span class="novedad_info"><i class="fa-solid fa-film"></i></span>
-                        <span class="novedad">NOVEDAD</span>
-
-                    </div>
-                    <div class="news_card_body">
-                        <h2 class="news_card_body_nombre">Pelicula</h2>
-                        <p class="news_card_body_descripcion">
-                            Rating
-                            <span>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                            </span>
-                        </p>
-                    </div>
-                </div>
-
-                <div class="news_card">
-                    <div class="news_card_head">
-                        <img src="./img/foto cv.jfif" alt="foto cv" class="news_card_head_img">
-                        <span class="novedad_info"><i class="fa-solid fa-tv"></i></span>
-                        <span class="novedad">NOVEDAD</span>
-                    </div>
-                    <div class="news_card_body">
-                        <h2 class="news_card_body_nombre">Serie</h2>
-                        <p class="news_card_body_descripcion">
-                            Rating
-                            <span>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                            </span>
-                        </p>
-                    </div>
-                </div>
-
-                <div class="news_card">
-                    <div class="news_card_head">
-                        <img src="./img/foto cv.jfif" alt="foto cv" class="news_card_head_img">
-                        <span class="novedad_info"><i class="fa-solid fa-tv"></i></span>
-                        <span class="novedad">NOVEDAD</span>
-                    </div>
-                    <div class="news_card_body">
-                        <h2 class="news_card_body_nombre">Serie</h2>
-                        <p class="news_card_body_descripcion">
-                            Rating
-                            <span>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                            </span>
-                        </p>
-                    </div>
-                </div>
-
-                <div class="news_card">
-                    <div class="news_card_head">
-                        <img src="./img/foto cv.jfif" alt="foto cv" class="news_card_head_img">
-                        <span class="novedad_info"><i class="fa-solid fa-film"></i></i></span>
-                        <span class="novedad">NOVEDAD</span>
-                    </div>
-                    <div class="news_card_body">
-                        <h2 class="news_card_body_nombre">Pelicula</h2>
-                        <p class="news_card_body_descripcion">
-                            Rating
-                            <span>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                            </span>
-                        </p>
-                    </div>
-                </div>
-            </div>
+            <div class="news_container"></div>
         </section>
 
         <section id="series">
 
             <h2><a href="#home">#</a>Series</h2>
-            <span><h5>Para ver todas las Series <a href="/series">Ingrese aquí</a>.</h5></span>
 
             <h3>
                 En este apartado en contraras todas las series en nuestro catalogo
             </h3>
 
-            <div class="news_container">
-                <div class="news_card">
-                    <div class="news_card_head">
-                        <img src="./img/foto cv.jfif" alt="foto cv" class="news_card_head_img">
-                        <span class="novedad_info"><i class="fa-solid fa-tv"></i></span>
-                    </div>
-                    <div class="news_card_body">
-                        <h2 class="news_card_body_nombre">Serie</h2>
-                        <p class="news_card_body_descripcion">
-                            Rating
-                            <span>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                            </span>
-                        </p>
-                    </div>
-                </div>
-
-                <div class="news_card">
-                    <div class="news_card_head">
-                        <img src="./img/foto cv.jfif" alt="foto cv" class="news_card_head_img">
-                        <span class="novedad_info"><i class="fa-solid fa-tv"></i></span>
-                    </div>
-                    <div class="news_card_body">
-                        <h2 class="news_card_body_nombre">Serie</h2>
-                        <p class="news_card_body_descripcion">
-                            Rating
-                            <span>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                            </span>
-                        </p>
-                    </div>
-                </div>
-
-                <div class="news_card">
-                    <div class="news_card_head">
-                        <img src="./img/foto cv.jfif" alt="foto cv" class="news_card_head_img">
-                        <span class="novedad_info"><i class="fa-solid fa-tv"></i></span>
-                    </div>
-                    <div class="news_card_body">
-                        <h2 class="news_card_body_nombre">Serie</h2>
-                        <p class="news_card_body_descripcion">
-                            Rating
-                            <span>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                            </span>
-                        </p>
-                    </div>
-                </div>
-
-                <div class="news_card">
-                    <div class="news_card_head">
-                        <img src="./img/foto cv.jfif" alt="foto cv" class="news_card_head_img">
-                        <span class="novedad_info"><i class="fa-solid fa-tv"></i></span>
-                    </div>
-                    <div class="news_card_body">
-                        <h2 class="news_card_body_nombre">Serie</h2>
-                        <p class="news_card_body_descripcion">
-                            Rating
-                            <span>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                            </span>
-                        </p>
-                    </div>
-                </div>
-
-                <div class="news_card">
-                    <div class="news_card_head">
-                        <img src="./img/foto cv.jfif" alt="foto cv" class="news_card_head_img">
-                        <span class="novedad_info"><i class="fa-solid fa-tv"></i></i></span>
-                    </div>
-                    <div class="news_card_body">
-                        <h2 class="news_card_body_nombre">Serie</h2>
-                        <p class="news_card_body_descripcion">
-                            Rating
-                            <span>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                            </span>
-                        </p>
-                    </div>
-                </div>
-            </div>
+            <div class="news_container"></div>
 
         </section>
 
         <section id="peliculas">
 
             <h2><a href="#home">#</a>Películas</h2>
-            <span><h5>Para ver todas las Películas <a href="/peliculas">Ingrese aquí</a>.</h5></span>
 
             <h3>
                 En este apartado en contraras todas las películas en nuestro catálogo
             </h3>
 
-            <div class="news_container">
-                <div class="news_card">
-                    <div class="news_card_head">
-                        <img src="./img/foto cv.jfif" alt="foto cv" class="news_card_head_img">
-                        <span class="novedad_info"><i class="fa-solid fa-film"></i></span>
-                    </div>
-                    <div class="news_card_body">
-                        <h2 class="news_card_body_nombre">Película</h2>
-                        <p class="news_card_body_descripcion">
-                            Rating
-                            <span>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                            </span>
-                        </p>
-                    </div>
-                </div>
-
-                <div class="news_card">
-                    <div class="news_card_head">
-                        <img src="./img/foto cv.jfif" alt="foto cv" class="news_card_head_img">
-                        <span class="novedad_info">
-                            <i class="fa-solid fa-film"></i>
-                        </span>
-                    </div>
-                    <div class="news_card_body">
-                        <h2 class="news_card_body_nombre">Película</h2>
-                        <p class="news_card_body_descripcion">
-                            Rating
-                            <span>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                            </span>
-                        </p>
-                    </div>
-                </div>
-
-                <div class="news_card">
-                    <div class="news_card_head">
-                        <img src="./img/foto cv.jfif" alt="foto cv" class="news_card_head_img">
-                        <span class="novedad_info"><i class="fa-solid fa-film"></i></span>
-                    </div>
-                    <div class="news_card_body">
-                        <h2 class="news_card_body_nombre">Película</h2>
-                        <p class="news_card_body_descripcion">
-                            Rating
-                            <span>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                            </span>
-                        </p>
-                    </div>
-                </div>
-
-                <div class="news_card">
-                    <div class="news_card_head">
-                        <img src="./img/foto cv.jfif" alt="foto cv" class="news_card_head_img">
-                        <span class="novedad_info"><i class="fa-solid fa-film"></i></span>
-                    </div>
-                    <div class="news_card_body">
-                        <h2 class="news_card_body_nombre">Película</h2>
-                        <p class="news_card_body_descripcion">
-                            Rating
-                            <span>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                            </span>
-                        </p>
-                    </div>
-                </div>
-
-                <div class="news_card">
-                    <div class="news_card_head">
-                        <img src="./img/foto cv.jfif" alt="foto cv" class="news_card_head_img">
-                        <span class="novedad_info"><i class="fa-solid fa-film"></i></i></span>
-                    </div>
-                    <div class="news_card_body">
-                        <h2 class="news_card_body_nombre">Película</h2>
-                        <p class="news_card_body_descripcion">
-                            Rating
-                            <span>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                            </span>
-                        </p>
-                    </div>
-                </div>
-            </div>
+            <div class="news_container"></div>
 
         </section>
 
+        <div id='modal' class='modal hiden'>
+            <!-- Hcaer plantilla de modal para ingresar datos de las peliculas -->
+        </div>
+        <span id='cierre' class='cierre hiden'>&times</span>
     </main>
 
     <footer class="footer-principal">
@@ -463,7 +167,7 @@
 
     </footer>
 
-        
+    <script src="./js/validacion.js"></script>
 </body>
 
 </html>
