@@ -35,7 +35,7 @@ async function getVideo(id, type) {
 		const {key , site} = filtrados[0]
 		const videoUrl = `https://${site.toLowerCase()}.com/embed/${key}`
 
-		return (`<iframe width="560" height="315" src=${videoUrl} id=${id} class=${id} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`)
+		return (`<iframe width="560" height="315" src=${videoUrl} id=${id} class='${id} trailer' title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`)
 	}
 	catch (error) {
 		console.error(`Error: ${error.trace}: La pelicula no tiene trailer`)
@@ -55,10 +55,22 @@ async function agregarModal(){
 	cierre.classList.toggle('hiden')
 	modal.innerHTML = ''
 	const trailer = await getVideo(this.id, this.getElementsByClassName('fa-film')[0] ? 'movie' : 'tv')
-	modal.innerHTML = trailer
 	const detalles = await getMovieOrSerieDetails(this.id, this.getElementsByClassName('fa-film')[0] ? 'movie' : 'tv')
-
+	const generos = detalles.genres.map(genero => genero.name)
+	const generosPlantilla = generos.map(genero => `<span class="details_genres">${genero}</span>`)
+	console.log(generosPlantilla.join(''))
+	const plantilla = `
+		<div class="details_container">
+			<h1 class="details_title">${detalles.title || detalles.name}</h1>
+			<div class="genres_container">
+				${generosPlantilla.join('')}
+			</div>
+			${trailer}
+			<p class="details_overview">${detalles.overview}</p>
+		</div>
+	`
 	console.log(detalles)
+	modal.innerHTML = plantilla
 	/* Sacare la info que necesite de la pelicula / serie y armar un template para poner esa info en el modal mas los estilos css */
 }
 
@@ -112,7 +124,7 @@ function showList(movies, novedad, section) {
 		</div>
 		`)
 	})
-	container.innerHTML = cards.join('')
+	container.innerHTML = cards.join('') 
 	agregarListener(movies)
 }
 
@@ -199,3 +211,4 @@ getLatest(SEARCHTYPE.movieLatest, document.getElementById('peliculas'))
 
 // Muestro en la seccion de las 5 series mejores votadas
 getLatest(SEARCHTYPE.tvLatest, document.getElementById('series'))
+
