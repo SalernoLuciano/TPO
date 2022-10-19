@@ -70,9 +70,109 @@ a:hover{
 	transition: color .3s;
 }
 
+/* Estilos banner */
+
 .banner{
+	max-width:78vw; 
+	max-height: 65vh;
+}
+
+.mySlides {
 	display: none;
 }
+/* img {vertical-align: middle;} */
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: relative;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+.text > h2{
+	color: var(--details-color);
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .prev, .next,.text {font-size: 11px}
+}
+
+
 /* final de estilos del header */
 
 /* Estilos generales para cada section */
@@ -208,17 +308,17 @@ h5 > a{
 	ul{
 		gap: 0.5rem;
 	}
-
+/* 
 	.banner{
 		display: block;
 		position: relative;
-	}
+	} */
 
 	img{
 		width: 100%;
 	}
 
-	.data{
+	/* .data{
 		position: absolute;
 		left: 0;
 		bottom: .4rem;
@@ -228,11 +328,11 @@ h5 > a{
 		font-size: 1.2rem;
 		backdrop-filter: blur(1.25rem);
 		box-shadow: 0 0 5px #0000009a;
-	}
+	} */
 
-	.data > h2{
+	/* .data > h2{
 		color: var(--details-color);
-	}
+	} */
 
 	.team_container{
 		grid-template-columns: repeat(3, 300px);
@@ -246,6 +346,7 @@ h5 > a{
 	}
 }
 
+/* Estilos modal */
 .modal{
 	position: fixed;
 	top: 0;
@@ -310,7 +411,8 @@ h5 > a{
 	overflow: auto;
 }
 
-/* Pagina de contacto */
+/* Estilos pagina de contacto */
+
 #titulo_form{
 	text-align: center;
 }
@@ -397,12 +499,7 @@ fieldset {
 	color: red; 
 }
 
-/* Footer */
-
 /* Estilos Footer */
-
-
-
 .footer-principal {
 	background-color: #101018;
 	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);

@@ -9,6 +9,8 @@ const SEARCHTYPE = {
 
 function cerrarModal(){
 	const modal = document.getElementById('modal')
+	const body = document.querySelector("body");
+	body.style.overflow = "auto";
 	this.classList.toggle('hiden')
 	modal.classList.toggle('hiden')
 	modal.innerHTML = ''
@@ -51,7 +53,11 @@ async function getVideo(id, type) {
 async function agregarModal(){
 	const modal = document.getElementById('modal')
 	const cierre = document.getElementById('cierre')
+	const body = document.querySelector("body");
+
+	body.style.overflow = "hidden";
 	modal.classList.toggle('hiden')
+	modal.style.overflow = "auto";
 	cierre.classList.toggle('hiden')
 	modal.innerHTML = ''
 	const trailer = await getVideo(this.id, this.getElementsByClassName('fa-film')[0] ? 'movie' : 'tv')
@@ -65,7 +71,7 @@ async function agregarModal(){
 			<div class="genres_container">
 				${generosPlantilla.join('')}
 			</div>
-			${trailer}
+				${trailer}
 			<p class="details_overview">${detalles.overview}</p>
 		</div>
 	`
@@ -196,13 +202,42 @@ function search(){
 	opt[0].checked ? searchMovieOrShow(SEARCHTYPE.movie, this.value, document.getElementById('resultado')) : searchMovieOrShow(SEARCHTYPE.tv, this.value, document.getElementById('resultado'))
 }
 
+
+/*Funciones carrousel*/
+let slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  let dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active";
+}
+
+
 // Busco pelicula/serie ingresada en la barra de busqueda
 const buscador = document.querySelector('#buscador')
 buscador.addEventListener('search', search)
 
 const modalClose = document.getElementById('cierre')
 modalClose.addEventListener('click', cerrarModal)
-
 //Muestro en la seccion de novedades las 5 primeras novedades
 getNews()
 
